@@ -1,12 +1,10 @@
-{
+'{
   "name": "backend_ai",
   "version": "1.0.0",
   "description": "Backend for AI MERN Project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",      // ✅ Production (Render, Railway, etc.)
-    "dev": "nodemon index.js",     // ✅ Local development (auto-restart)
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,4 +18,4 @@
     "nodemon": "^3.1.10",
     "pdf-parse": "^1.1.1"
   }
-}
+}'
