@@ -1,32 +1,35 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
+
 const app = express();
-const PORT = 4000;
 
-const path = require('path')
-
+// Connect to DB
 require('./conn');
-app.use(express.json());
-app.use(cors({
-    credentials:true,
-    origin:"http://localhost:5173"
-}))
 
+// Middleware
+app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL || '*', // Allow Vercel frontend in production
+  })
+);
+
+// Routes
 const UserRoutes = require('./Routes/user');
 const ResumeRoutes = require('./Routes/resume');
 
-app.use('/api/user',UserRoutes)
-app.use('/api/resume',ResumeRoutes)
+app.use('/api/user', UserRoutes);
+app.use('/api/resume', ResumeRoutes);
 
+// Default Route
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend is running successfully ✅' });
+});
 
-// // Serve static files from the build folder
-// app.use(express.static(path.join(__dirname, "build")));
-
-// // Catch-all route: send index.html for React Router
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-
-app.listen(PORT,()=>{
-    console.log("backend is running on port",PORT)
-})
+// Use Render's PORT or fallback to 4000
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`✅ Backend running on port ${PORT}`);
+});
