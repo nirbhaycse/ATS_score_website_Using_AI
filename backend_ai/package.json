@@ -4,8 +4,9 @@
   "description": "Backend for AI MERN Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js",      // ✅ Production (Render, Railway, etc.)
+    "dev": "nodemon index.js",     // ✅ Local development (auto-restart)
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
